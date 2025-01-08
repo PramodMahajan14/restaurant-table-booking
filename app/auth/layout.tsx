@@ -68,9 +68,9 @@ export default function UserLayout({
     }
   };
 
-  // useEffect(() => {
-  //   getUserData();
-  // }, [isAuthenticated]);
+  useEffect(() => {
+    getUserData();
+  }, [isAuthenticated]);
 
   return isLoading ? (
     <div className="w-full h-screen flex justify-center items-center">

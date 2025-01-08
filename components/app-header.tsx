@@ -1,4 +1,3 @@
-import { Menu } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";

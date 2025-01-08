@@ -85,7 +85,7 @@ export const RestaurantPage = () => {
           </div>
         </div>
         <div className="flex md:flex-row flex-col justify-start items-center md:space-2">
-          <div className="flex justify-start items-center space-x-3">
+          <div className="flex justify-start items-center space-x-2">
             <DatePicker />
             <GuestSelector />
             <GuestSelector />

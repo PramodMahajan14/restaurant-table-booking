@@ -22,7 +22,7 @@ export const DatePicker = () => {
         <Button
           variant={"outline"}
           className={cn(
-            "max-w-[250px]  justify-start text-left font-normal text-xs md:text-sm",
+            "max-w-[250px] p-2 justify-start text-left font-normal text-xs md:text-sm",
             !date && "text-muted-foreground"
           )}
         >

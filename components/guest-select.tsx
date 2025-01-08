@@ -11,10 +11,10 @@ export const GuestSelector = () => {
   return (
     <>
       <Select>
-        <SelectTrigger className="w-fit min-w-5 px-4 ">
+        <SelectTrigger className="w-fit min-w-5 px-2 md:px-4">
           <SelectValue
             placeholder={
-              <div className="flex items-center space-x-2 text-stone-500">
+              <div className="flex items-center space-x-2  text-stone-500">
                 <Users className="w-5 h-5 " /> <p>People</p>
               </div>
             }

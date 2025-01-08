@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import {
   Card,
@@ -5,6 +7,7 @@ import {
   CardDescription,
   CardTitle,
 } from "@/components/ui/card";
+import { useRouter } from "next/navigation";
 
 interface RestaurantCardProps {
   title: string;
@@ -23,8 +26,12 @@ export const RestaurantCard = ({
   availabilities,
   address,
 }: RestaurantCardProps) => {
+  const route = useRouter();
   return (
-    <Card className="rounded-sm h-fit p-2 shadow-none border-none hover:shadow-md hover:border-4 bg-white dark:bg-gray-500 ">
+    <Card
+      className="rounded-sm h-fit p-2 shadow-none border-none hover:shadow-md hover:border-4 bg-white dark:bg-gray-500 "
+      onClick={() => route.push("/resto/rest")}
+    >
       <div className="relative h-24 md:h-44 w-full rounded-md">
         <Image
           src={image}

@@ -22,7 +22,7 @@ export default function UserLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { isAuthenticated, setSessionExpired, setUser } = useAuth();
+  const { setSessionExpired, setUser } = useAuth();
   const { toast } = useToast();
   const [isLoading, seIsLoading] = useState(false);
   const router = useRouter();
@@ -70,7 +70,7 @@ export default function UserLayout({
 
   useEffect(() => {
     getUserData();
-  }, [isAuthenticated]);
+  }, []);
 
   return isLoading ? (
     <div className="w-full h-screen flex justify-center items-center">

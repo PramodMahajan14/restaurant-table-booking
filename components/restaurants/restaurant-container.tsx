@@ -1,6 +1,6 @@
 import { Separator } from "@radix-ui/react-separator";
 import { RestaurantCard } from "./restaurant-card";
-import { LayoutDashboard, List } from "lucide-react";
+import { LayoutGrid, List } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -65,9 +65,11 @@ export const RestaurantContainer = () => {
   return (
     <div className="w-full h-fit bg-white dark:bg-gray-400 p-1">
       <div className="flex justify-between mx-1">
-        <h1 className="text-xl font-bold dark:text-white">Our Restaurant</h1>
+        <h1 className="text-xl font-semibold dark:text-white">
+          Our Restaurant
+        </h1>
         <button onClick={() => setListView(!listView)}>
-          {listView ? <LayoutDashboard /> : <List />}
+          {listView ? <LayoutGrid /> : <List />}
         </button>
       </div>
       <Separator className="h-[3px] bg-primary my-1" />

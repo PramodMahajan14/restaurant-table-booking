@@ -2,11 +2,19 @@
 import { ChevronLeft, Clock4, MapPin, Menu, NotebookTabs } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
-
 import { GuestSelector } from "@/components/guest-select";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useRouter } from "next/navigation";
+
+import { CardContent } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export const RestaurantPage = () => {
   const router = useRouter();
@@ -24,7 +32,7 @@ export const RestaurantPage = () => {
       <div className="w-full h-fit bg-white dark:bg-gray-400 p-2">
         <div
           className="flex items-center text-md font-semibold dark:text-white py-4 cursor-pointer"
-          onClick={() => router.push("/auth")}
+          onClick={() => router.push("/")}
         >
           <ChevronLeft className="w-5 h5" />
           <h1 className="text-md">Go Back</h1>
@@ -32,15 +40,25 @@ export const RestaurantPage = () => {
         <Separator className="h-[2px] w-full" />
 
         <div className="px-2 my-5">
-          <div className="relative h-56 md:h-80 w-full ">
-            <Image
-              src={rest.image}
-              alt="Picture of the restaurant"
-              layout="fill"
-              objectFit="cover"
-              className="rounded-md"
-            />
-          </div>
+          <Carousel className="w-full ">
+            <CarouselContent>
+              {Array.from({ length: 5 }).map((_, index) => (
+                <CarouselItem key={index}>
+                  <CardContent className="relative h-56 md:h-80 w-full">
+                    <Image
+                      src={rest.image}
+                      alt="Picture of the restaurant"
+                      layout="fill"
+                      objectFit="cover"
+                      className="rounded-md"
+                    />
+                  </CardContent>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
 
           <h1 className="text-xl md:text-2xl my-3">{rest.title}</h1>
           <Separator className="h-[2px] w-full" />
@@ -88,11 +106,12 @@ export const RestaurantPage = () => {
           <div className="flex justify-start items-center space-x-2">
             <GuestSelector />
             <GuestSelector />
+            <GuestSelector />
           </div>
-          <div className="flex flex-col md:flex-row my-4 space-y-2 justify-start items-center w-full md:space-x-4 mx-3">
+          <div className="flex flex-col md:flex-row my-4 space-y-2 md:space-y-0 justify-around md:justify-start items-center w-full space-x-2  mx-3">
             <RadioGroup
               defaultValue="option-one"
-              className="flex items-center space-x-2 justify-start w-full"
+              className="flex items-center w-fit space-x-1 justify-start "
             >
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="in" id="in" />
@@ -103,7 +122,7 @@ export const RestaurantPage = () => {
                 <Label htmlFor="out">Out</Label>
               </div>
             </RadioGroup>
-            <button className="px-3 md:w-fit w-full py-1 text-white bg-primary rounded-md ">
+            <button className="px-3  md:w-fit w-full py-2 md:py-[5px]  text-white bg-primary rounded-md m-0 ">
               Find Slot
             </button>
           </div>

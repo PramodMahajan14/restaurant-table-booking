@@ -79,7 +79,7 @@ function LoginPage() {
 
       if (response.data.statuscode === 200) {
         setSessionExpired(false);
-        router.push("/auth");
+        router.push("/");
       } else if (response.data.statuscode === 401) {
         console.log(userEmail);
         onOpen("snedVerificationLink", userEmail);

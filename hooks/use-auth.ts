@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 
 interface User {
   id: string;
@@ -14,20 +15,43 @@ interface AuthState {
 
   logout: () => void;
   userSignUp: () => void;
-  setUser: (use: User) => void;
+  setUser: (user: User) => void;
   setSessionExpired: (status: boolean) => void;
 }
 
-const useAuth = create<AuthState>((set) => ({
-  user: null,
-  isUserSignUp: false,
-  sessionExpired: false,
-  isAuthenticated: false,
+const useAuth = create<AuthState>()(
+  persist(
+    (set) => ({
+      user: null,
+      isUserSignUp: false,
+      sessionExpired: false,
+      isAuthenticated: false,
 
-  logout: () => set({ isAuthenticated: false }),
-  setSessionExpired: (status) => set({ sessionExpired: status }),
-  setUser: (user: User) => set({ user: user, isAuthenticated: true }),
-  userSignUp: () => set({ isUserSignUp: true }),
-}));
+      logout: () =>
+        set(() => ({
+          user: null,
+          isAuthenticated: false,
+          sessionExpired: false,
+        })),
+      setSessionExpired: (status) =>
+        set(() => ({
+          sessionExpired: status,
+        })),
+      setUser: (user: User) =>
+        set(() => ({
+          user,
+          isAuthenticated: true,
+        })),
+      userSignUp: () =>
+        set(() => ({
+          isUserSignUp: true,
+        })),
+    }),
+    {
+      name: "auth-storage", // Key in storage
+      storage: createJSONStorage(() => localStorage), // Use localStorage
+    }
+  )
+);
 
 export default useAuth;

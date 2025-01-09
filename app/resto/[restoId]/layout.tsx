@@ -22,7 +22,7 @@ export default function UserLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { setSessionExpired, setUser } = useAuth();
+  const { isAuthenticated, setSessionExpired, setUser, user } = useAuth();
   const { toast } = useToast();
   const [isLoading, seIsLoading] = useState(false);
   const router = useRouter();
@@ -36,7 +36,7 @@ export default function UserLayout({
           withCredentials: true,
         }
       );
-      console.log(response);
+
       seIsLoading(false);
 
       if (response.data.statuscode === 200) {
@@ -65,12 +65,15 @@ export default function UserLayout({
         title: "Uh oh! Something went wrong.",
         action: <ToastAction altText="Try again">Try again</ToastAction>,
       });
+      router.push("/user");
     }
   };
 
   useEffect(() => {
-    getUserData();
-  }, []);
+    if (!user) {
+      getUserData();
+    }
+  }, [isAuthenticated]);
 
   return isLoading ? (
     <div className="w-full h-screen flex justify-center items-center">

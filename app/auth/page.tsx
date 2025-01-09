@@ -2,14 +2,10 @@
 
 "use client";
 
-import { CalenderIndex } from "@/components/calender/calender-index";
-
 export default function AuthicatePage() {
-  // const { user, logout } = useAuth();
-
   return (
     <>
-      <CalenderIndex />
+      <h1>User pAge</h1>
     </>
   );
 }

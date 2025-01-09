@@ -1,5 +1,8 @@
 import { Separator } from "@radix-ui/react-separator";
 import { RestaurantCard } from "./restaurant-card";
+import { LayoutDashboard, List } from "lucide-react";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 export const RestaurantContainer = () => {
   const restaurants = [
@@ -58,13 +61,24 @@ export const RestaurantContainer = () => {
       availabilities: ["12:00", "12:45", "01:00"],
     },
   ];
+  const [listView, setListView] = useState(false);
   return (
     <div className="w-full h-fit bg-white dark:bg-gray-400 p-1">
-      <h1 className="text-xl font-bold dark:text-white">Our Restaurant</h1>
+      <div className="flex justify-between mx-1">
+        <h1 className="text-xl font-bold dark:text-white">Our Restaurant</h1>
+        <button onClick={() => setListView(!listView)}>
+          {listView ? <LayoutDashboard /> : <List />}
+        </button>
+      </div>
       <Separator className="h-[3px] bg-primary my-1" />
-      <div className=" grid grid-cols-2 md:grid-cols-3 gap-1 md:gap-3  md:p-2 sm:md-1  rounded-sm my-2 ">
+      <div
+        className={cn(
+          "grid grid-cols-2 md:grid-cols-3 gap-1 md:gap-3  md:p-2 sm:md-1  rounded-sm my-2",
+          listView ? "grid-cols-1 md:grid-cols-2" : "grid-cols-2 md:grid-cols-3"
+        )}
+      >
         {restaurants.map((resto, i) => (
-          <RestaurantCard key={i} {...resto} />
+          <RestaurantCard key={i} {...resto} listview={listView} />
         ))}
       </div>
     </div>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
-import "../components/calender/calender.css";
+
 import { ThemeProvider } from "@/components/Providers/themem-provider";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/toaster";

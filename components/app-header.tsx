@@ -13,7 +13,7 @@ export const AppHeader = () => {
         </div>
         <div className="hidden items-center justify-around sm:flex gap-10 dark:text-white">
           <div className="flex items-center space-x-3 gap-3 font-semibold cursor-pointer">
-            <li className="list-none mx-3 ">Home</li>
+            <li className="list-none mx-3">Home</li>
             <li className="list-none mx-3">Contact us</li>
             <li className="list-none mx-3">Sign Out</li>
           </div>
